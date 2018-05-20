@@ -8,6 +8,7 @@ public class SportNewsModel {
     private String publishDate;
     private String webUrl;
 
+    //TODO create the SportNewsModel
     SportNewsModel(String articleTitle, String sectionName, String authorName, String publishDate, String webUrl) {
         this.articleTitle = articleTitle;
         this.sectionName = sectionName;
@@ -16,6 +17,7 @@ public class SportNewsModel {
         this.webUrl = webUrl;
     }
 
+    //TODO create methods for getting the data from SportNewsModel
     public String getArticleTitle() {
         return articleTitle;
     }

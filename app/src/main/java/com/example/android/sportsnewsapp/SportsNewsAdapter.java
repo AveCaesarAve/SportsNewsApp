@@ -16,11 +16,13 @@ public class SportsNewsAdapter extends RecyclerView.Adapter<SportNewsHolder> {
     private ArrayList<SportNewsModel> newsList;
     private Context context;
 
+    //TODO create SportNewsAdapter
     SportsNewsAdapter(Context context, ArrayList<SportNewsModel> itemModels) {
         this.context = context;
         this.newsList = itemModels;
     }
 
+    //TODO create the onCreateViewHolder
     @NonNull
     @Override
     public SportNewsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -28,22 +30,24 @@ public class SportsNewsAdapter extends RecyclerView.Adapter<SportNewsHolder> {
         return new SportNewsHolder(myView);
     }
 
+    //TODO create onBindViewHolder
     @Override
     public void onBindViewHolder(@NonNull final SportNewsHolder holder, final int position) {
 
         holder.articleAuthor.setText(newsList.get(position).getAuthorName());
-//        holder.articleDate.setText(newsList.get(position).getDateOfCreate());
+//      holder.articleDate.setText(newsList.get(position).getDateOfCreate());
         holder.articleTitle.setText(newsList.get(position).getArticleTitle());
         holder.articleSection.setText(newsList.get(position).getSectionName());
 
+        //TODO handle the article date in a more elegant way
         String articleDate = newsList.get(position).getDateOfCreate();
         String formatedData =articleDate.replace("T", " ").replace("Z", "");
         holder.articleDate.setText(formatedData);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
+            //TODO action onClick on an article (open in browser)
             @Override
             public void onClick(View v) {
-
                 String url = newsList.get(position).getWebUrl();
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));

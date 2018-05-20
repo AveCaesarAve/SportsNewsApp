@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">CyclingNewsApp</string>
-    <string name="internetConnectionMessage">no internet</string>
-    <string name="nothingToShowMessage">nothing to show</string>
+    <string name="noInternetMessage">No internet connection available</string>
+    <string name="noDataToShowMessage">Currently there are no stories for you. You can always come later and check for new stories.</string>
+
+    <string name="HttpNotPossible">HTTP request not possible</string>
+    <string name="URLfailure">"Can't create URL"</string>
 </resources>

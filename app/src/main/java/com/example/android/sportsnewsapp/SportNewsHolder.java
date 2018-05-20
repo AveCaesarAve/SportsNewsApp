@@ -11,6 +11,7 @@ public class SportNewsHolder extends RecyclerView.ViewHolder {
     TextView articleAuthor;
     TextView articleDate;
 
+    //TODO create a new SportNewsHolder
     SportNewsHolder(View itemView) {
         super(itemView);
         articleTitle = itemView.findViewById(R.id.articleTitleTxt);
