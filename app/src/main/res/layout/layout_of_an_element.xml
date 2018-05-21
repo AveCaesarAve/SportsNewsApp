@@ -4,49 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:padding="@dimen/defaultLayoutPadding">
 
     <TextView
         android:id="@+id/articleTitleTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:textSize="@dimen/large_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/sampleTextForLayout" />
 
     <TextView
         android:id="@+id/articleSectionNameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:layout_marginTop="@dimen/layoutMarginTop"
         android:textSize="@dimen/small_text_size"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/articleTitleTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/articleTitleTxt"
+        tools:text="@string/sampleTextForLayout" />
 
     <TextView
         android:id="@+id/articleAuthorTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="@dimen/small_text_size"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="@dimen/layoutMarginLeft"
+        android:layout_marginTop="@dimen/layoutMarginTop"
         android:gravity="end"
+        android:textSize="@dimen/small_text_size"
+        app:layout_constraintLeft_toRightOf="@id/articleSectionNameTxt"
         app:layout_constraintTop_toBottomOf="@id/articleTitleTxt"
-        app:layout_constraintLeft_toRightOf="@id/articleSectionNameTxt" />
+        tools:text="@string/sampleTextForLayout"
+        android:layout_marginStart="@dimen/layoutMarginLeft" />
 
     <TextView
         android:id="@+id/articleDateTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="@dimen/small_text_size"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="@dimen/layoutMarginLeft"
+        android:layout_marginStart="@dimen/layoutMarginLeft"
+        android:layout_marginTop="@dimen/layoutMarginTop"
         android:gravity="end"
+        android:textSize="@dimen/small_text_size"
+        app:layout_constraintLeft_toRightOf="@id/articleAuthorTxt"
         app:layout_constraintTop_toBottomOf="@id/articleTitleTxt"
-        app:layout_constraintLeft_toRightOf="@id/articleAuthorTxt" />
+        tools:text="@string/sampleTextForLayout" />
 </android.support.constraint.ConstraintLayout>

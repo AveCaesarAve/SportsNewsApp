@@ -3,4 +3,7 @@
     <dimen name="small_text_size">10sp</dimen>
     <dimen name="large_text_size">20sp</dimen>
     <dimen name="articleMarginRight">100dp</dimen>
+    <dimen name="layoutMarginTop">8dp</dimen>
+    <dimen name="layoutMarginLeft">10dp</dimen>
+    <dimen name="defaultLayoutPadding">16dp</dimen>
 </resources>

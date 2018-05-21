@@ -34,9 +34,9 @@ public class SportsNewsAdapter extends RecyclerView.Adapter<SportNewsHolder> {
     @Override
     public void onBindViewHolder(@NonNull final SportNewsHolder holder, final int position) {
 
-        holder.articleAuthor.setText(newsList.get(position).getAuthorName());
-        holder.articleTitle.setText(newsList.get(position).getArticleTitle());
-        holder.articleSection.setText(newsList.get(position).getSectionName());
+        holder.articleAuthor.setText(newsList.get(position).getmAuthorName());
+        holder.articleTitle.setText(newsList.get(position).getmArticleTitle());
+        holder.articleSection.setText(newsList.get(position).getmSectionName());
 
         // handle the article date in a more elegant way
         String articleDate = newsList.get(position).getDateOfCreate();
@@ -47,7 +47,7 @@ public class SportsNewsAdapter extends RecyclerView.Adapter<SportNewsHolder> {
             // action onClick on an article (open in browser)
             @Override
             public void onClick(View v) {
-                String url = newsList.get(position).getWebUrl();
+                String url = newsList.get(position).getmWebUrl();
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
                 v.getContext().startActivity(i);

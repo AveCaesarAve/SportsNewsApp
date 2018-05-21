@@ -17,11 +17,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<SportNewsModel>> {
 
-    RecyclerView recyclerView;
-    SportsNewsAdapter sportsNewsAdapter;
-    ArrayList<SportNewsModel> newsList;
+    RecyclerView mRecyclerView;
+    SportsNewsAdapter mSportsNewsAdapter;
+    ArrayList<SportNewsModel> mNewsList;
     private TextView mEmptyStateTextView;
-    private View loadingCircle;
+    private View mLoadingCircle;
     private static final String REQUEST_URL = "http://content.guardianapis.com/search?show-tags=contributor&section=sport&q=cycling&api-key=f56abef9-94f7-4fad-b92f-c9a26b5f37c2";
     private static final int LOADER_NEWS_ID = 1;
 
@@ -31,13 +31,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
 
         mEmptyStateTextView =findViewById(R.id.emptyView);
-        recyclerView = findViewById(R.id.mainView);
-        loadingCircle = findViewById(R.id.loadingCircle);
-        newsList = new ArrayList<>();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        sportsNewsAdapter = new SportsNewsAdapter( this, newsList);
-        recyclerView.setAdapter(sportsNewsAdapter);
+        mRecyclerView = findViewById(R.id.mainView);
+        mLoadingCircle = findViewById(R.id.loadingCircle);
+        mNewsList = new ArrayList<>();
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mSportsNewsAdapter = new SportsNewsAdapter( this, mNewsList);
+        mRecyclerView.setAdapter(mSportsNewsAdapter);
 
         // set-up the connectivity manager
         // ConnectivityManager - check connection to internet
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             loaderManager.initLoader(LOADER_NEWS_ID, null, this);
         } else {
             // action if no connection to the internet is possible - message
-            loadingCircle.setVisibility(View.GONE);
+            mLoadingCircle.setVisibility(View.GONE);
             mEmptyStateTextView.setText(R.string.noInternetMessage);
         }
     }
@@ -65,19 +65,19 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(Loader<List<SportNewsModel>> loader, List<SportNewsModel> myNewsList) {
 
-        loadingCircle.setVisibility(View.GONE);
+        mLoadingCircle.setVisibility(View.GONE);
         mEmptyStateTextView.setText(R.string.noDataToShowMessage);
-        sportsNewsAdapter.clearAllData();
+        mSportsNewsAdapter.clearAllData();
 
         if (myNewsList != null && !myNewsList.isEmpty()) {
             mEmptyStateTextView.setVisibility(View.GONE);
-            sportsNewsAdapter.addAllData(myNewsList);
+            mSportsNewsAdapter.addAllData(myNewsList);
         }
     }
 
     // onLoaderReset
     @Override
     public void onLoaderReset(Loader<List<SportNewsModel>> loader) {
-        sportsNewsAdapter.clearAllData();
+        mSportsNewsAdapter.clearAllData();
     }
 }

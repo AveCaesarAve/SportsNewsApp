@@ -2,39 +2,39 @@ package com.example.android.sportsnewsapp;
 
 public class SportNewsModel {
 
-    private String articleTitle;
-    private String sectionName;
-    private String authorName;
-    private String publishDate;
-    private String webUrl;
+    private String mArticleTitle;
+    private String mSectionName;
+    private String mAuthorName;
+    private String mPublishDate;
+    private String mWebUrl;
 
     // create the SportNewsModel
-    SportNewsModel(String articleTitle, String sectionName, String authorName, String publishDate, String webUrl) {
-        this.articleTitle = articleTitle;
-        this.sectionName = sectionName;
-        this.authorName = authorName;
-        this.publishDate = publishDate;
-        this.webUrl = webUrl;
+    SportNewsModel(String mArticleTitle, String mSectionName, String mAuthorName, String mPublishDate, String mWebUrl) {
+        this.mArticleTitle = mArticleTitle;
+        this.mSectionName = mSectionName;
+        this.mAuthorName = mAuthorName;
+        this.mPublishDate = mPublishDate;
+        this.mWebUrl = mWebUrl;
     }
 
     // create methods for getting the data from SportNewsModel
-    public String getArticleTitle() {
-        return articleTitle;
+    public String getmArticleTitle() {
+        return mArticleTitle;
     }
 
-    public String getSectionName() {
-        return sectionName;
+    public String getmSectionName() {
+        return mSectionName;
     }
 
-    public String getAuthorName() {
-        return authorName;
+    public String getmAuthorName() {
+        return mAuthorName;
     }
 
     public String getDateOfCreate() {
-        return publishDate;
+        return mPublishDate;
     }
 
-    public String getWebUrl() {
-        return webUrl;
+    public String getmWebUrl() {
+        return mWebUrl;
     }
 }
