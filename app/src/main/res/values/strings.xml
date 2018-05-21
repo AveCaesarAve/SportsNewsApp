@@ -1,8 +1,33 @@
 <resources>
     <string name="app_name">CyclingNewsApp</string>
+
+    <!-- Connection checker messages -->
     <string name="noInternetMessage">No internet connection available</string>
     <string name="noDataToShowMessage">Currently there are no stories for you. You can always come later and check for new stories.</string>
+
     <string name="sampleTextForLayout">SampleText</string>
-    <string name="HttpNotPossible">HTTP request not possible</string>
-    <string name="URLfailure">"Can't create URL"</string>
+
+    <!-- Settings Menu Item -->
+    <string name="settings_menu_item">Settings</string>
+    <!-- Settings Activity Title -->
+    <string name="settings_title">News Settings</string>
+
+    <!-- Selection One -->
+    <string name="settings_article_category_label">Article Category</string>
+    <string name="settings_article_category_key" translatable="false">article_cat</string>
+    <string name="settings_article_category_default" translatable="false">All</string>
+
+    <!-- Strings For Order-By Preference [CHAR LIMIT=30] -->
+    <string name="settings_order_by_label">Order By</string>
+    <string name="settings_order_by_key" translatable="false">order_by</string>
+    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_author_value</string>
+
+    <!-- Label for order-by author option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_author_label">Author</string>
+    <string name="settings_order_by_author_value" translatable="false">author</string>
+
+    <!-- Label for order-by most recent option [CHAR LIMIT=20] -->
+    <string name="settings_order_by_most_recent_label">Most Recent</string>
+    <string name="settings_order_by_most_recent_value" translatable="false">time</string>
+
 </resources>
