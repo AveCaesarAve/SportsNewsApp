@@ -9,19 +9,19 @@ public class SportNewsLoader extends AsyncTaskLoader<List<SportNewsModel>> {
 
     private String myUrl;
 
-    //TODO create new SportNewsLoader
+    // create new SportNewsLoader
     SportNewsLoader(Context context, String myUrl) {
         super(context);
         this.myUrl = myUrl;
     }
 
-    //TODO onStartLoading method
+    // onStartLoading method
     @Override
     protected void onStartLoading() {
         forceLoad();
     }
 
-    //TODO loadInBackground method
+    // loadInBackground method
     @Override
     public List<SportNewsModel> loadInBackground() {
 

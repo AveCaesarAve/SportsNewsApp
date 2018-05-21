@@ -28,22 +28,22 @@ public final class SportNewsQuery {
 
     public static List<SportNewsModel> getSportNewsData(String requestUrl) {
 
-        //TODO convert string to url
+        // convert string to url
         URL url = createUrl(requestUrl);
         String jsonResponse = null;
 
         try {
-            //TODO convert url to JSON
+            // convert url to JSON
             jsonResponse = makeHttpRequest(url);
         } catch (IOException e) {
             Log.e(LOG_DATA, "HTTP request not possible", e);
         }
 
-        // TODO return a list extracted from JSON
+        // return a list extracted from JSON
         return extractFeatureFromJson(jsonResponse);
     }
 
-    //TODO return URL from string
+    // return URL from string
     private static URL createUrl(String stringUrl) {
         URL url = null;
         try {
@@ -54,7 +54,7 @@ public final class SportNewsQuery {
         return url;
     }
 
-    //TODO convert URL JSON to string
+    // convert URL JSON to string
     private static String makeHttpRequest(URL url) throws IOException {
 
         String jsonResponse = "";
@@ -71,8 +71,8 @@ public final class SportNewsQuery {
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
-            //TODO request successful - send response code 200 - go to stream and read data
-            if (urlConnection.getResponseCode() == 200) {
+            // request successful - send response code 200 - go to stream and read data
+            if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else {
@@ -108,7 +108,7 @@ public final class SportNewsQuery {
         return output.toString();
     }
 
-    //TODO convert JSON data into string and return a list with items
+    // convert JSON data into string and return a list with items
     private static List<SportNewsModel> extractFeatureFromJson(String newsJSON) {
 
         if (TextUtils.isEmpty(newsJSON)) {
@@ -119,22 +119,22 @@ public final class SportNewsQuery {
 
         try {
             JSONObject baseJsonRoot = new JSONObject(newsJSON);
-            //TODO get JSON
+            // get JSON
             JSONObject newsObjectResponse = baseJsonRoot.getJSONObject("response");
             JSONArray newsArrayResults = newsObjectResponse.getJSONArray("results");
 
-            //TODO loop the results array
+            // loop the results array
             for (int i = 0; i < newsArrayResults.length(); i++) {
 
                 JSONObject currentSportNewsData = newsArrayResults.getJSONObject(i);
 
-                //TODO get string data
+                // get string data
                 String newsTitle = currentSportNewsData.getString("webTitle");
                 String newsDate = currentSportNewsData.getString("webPublicationDate");
                 String newsSection = currentSportNewsData.getString("sectionName");
                 String urnewsAuthor = "unknown";
 
-                //TODO add title if existing
+                // add title if existing
                 JSONArray sportNewsArrayTags = currentSportNewsData.getJSONArray("tags");
                 if (sportNewsArrayTags != null && sportNewsArrayTags.length() > 0) {
                     JSONObject currentSportNewsDataTags = sportNewsArrayTags.getJSONObject(0);
@@ -143,7 +143,7 @@ public final class SportNewsQuery {
 
                 String newsUrl = currentSportNewsData.getString("webUrl");
 
-                //TODO add data to the list
+                // add data to the list
                 newsList.add(new SportNewsModel(newsTitle, newsSection, urnewsAuthor, newsDate, newsUrl));
             }
 

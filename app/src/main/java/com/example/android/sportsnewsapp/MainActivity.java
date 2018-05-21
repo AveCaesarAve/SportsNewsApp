@@ -39,29 +39,29 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         sportsNewsAdapter = new SportsNewsAdapter( this, newsList);
         recyclerView.setAdapter(sportsNewsAdapter);
 
-        //TODO set-up the connectivity manager
-        //TODO ConnectivityManager - check connection to internet
+        // set-up the connectivity manager
+        // ConnectivityManager - check connection to internet
         ConnectivityManager connMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr != null ? connMgr.getActiveNetworkInfo() : null;
 
         if (networkInfo != null && networkInfo.isConnected()) {
-            //TODO get a reference to the LoaderManager and initialize with chosen ID
+            // get a reference to the LoaderManager and initialize with chosen ID
             LoaderManager loaderManager = getLoaderManager();
             loaderManager.initLoader(LOADER_NEWS_ID, null, this);
         } else {
-            //TODO action if no connection to the internet is possible - message
+            // action if no connection to the internet is possible - message
             loadingCircle.setVisibility(View.GONE);
             mEmptyStateTextView.setText(R.string.noInternetMessage);
         }
     }
 
-    //TODO onCreateLoader
+    // onCreateLoader
     @Override
     public Loader<List<SportNewsModel>> onCreateLoader(int i, Bundle bundle) {
         return new SportNewsLoader(this, REQUEST_URL);
     }
 
-    //TODO onLoadFinished
+    // onLoadFinished
     @Override
     public void onLoadFinished(Loader<List<SportNewsModel>> loader, List<SportNewsModel> myNewsList) {
 
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
     }
 
-    //TODO onLoaderReset
+    // onLoaderReset
     @Override
     public void onLoaderReset(Loader<List<SportNewsModel>> loader) {
         sportsNewsAdapter.clearAllData();
