@@ -8,26 +8,40 @@
     <string name="sampleTextForLayout">SampleText</string>
 
     <!-- Settings Menu Item -->
-    <string name="settings_menu_item">Settings</string>
+    <string name="settings">Settings</string>
     <!-- Settings Activity Title -->
     <string name="settings_title">News Settings</string>
 
-    <!-- Selection One -->
-    <string name="settings_article_category_label">Article Category</string>
-    <string name="settings_article_category_key" translatable="false">article_cat</string>
-    <string name="settings_article_category_default" translatable="false">All</string>
+    <!-- Strings For news limit preference [CHAR LIMIT=30] -->
+        <string name="settings_news_limit_label">News to show limit</string>
+        <string name="settings_news_limit_key" translatable="false">page-size</string>
+        <string name="settings_news_limit_default" translatable="false">5</string>
 
     <!-- Strings For Order-By Preference [CHAR LIMIT=30] -->
-    <string name="settings_order_by_label">Order By</string>
-    <string name="settings_order_by_key" translatable="false">order_by</string>
-    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_author_value</string>
+        <string name="settings_order_by_topic_label">Topic</string>
+        <string name="settings_order_by_topic_key" translatable="false">section</string>
+        <string name="settings_order_by_topic_default" translatable="false">@string/settings_order_by_politics_value</string>
 
-    <!-- Label for order-by author option [CHAR LIMIT=20] -->
-    <string name="settings_order_by_author_label">Author</string>
-    <string name="settings_order_by_author_value" translatable="false">author</string>
+    <!-- Label for order-by Politics -->
+        <string name="settings_order_by_politics_label">Politics</string>
+        <string name="settings_order_by_politics_value" translatable="false">politics</string>
 
-    <!-- Label for order-by most recent option [CHAR LIMIT=20] -->
-    <string name="settings_order_by_most_recent_label">Most Recent</string>
-    <string name="settings_order_by_most_recent_value" translatable="false">time</string>
+    <!-- Label for show all -->
+        <string name="settings_order_by_all_label">All</string>
+        <string name="settings_order_by_all_value" translatable="false">all</string>
 
-</resources>
+    <!-- Label for order-by Business -->
+        <string name="settings_order_by_business_label">Business</string>
+        <string name="settings_order_by_business_value" translatable="false">business</string>
+
+    <!-- Label for order-by Sport -->
+        <string name="settings_order_by_sport_label">Sport</string>
+        <string name="settings_order_by_sport_value" translatable="false">sport</string>4
+
+        <string name="api_key">api-key</string>
+        <string name="api_key_value">f56abef9-94f7-4fad-b92f-c9a26b5f37c2</string>
+
+        <string name="show_tags_author_key">show-tags</string>
+        <string name="show_tags_author_value">contributor</string>
+
+    </resources>

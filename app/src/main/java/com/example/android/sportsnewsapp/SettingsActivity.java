@@ -22,11 +22,11 @@ public class SettingsActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_main);
 
-            Preference minMagnitude = findPreference(getString(R.string.settings_article_category_key));
-            bindPreferenceSummaryToValue(minMagnitude);
+            Preference newsLimit = findPreference(getString(R.string.settings_news_limit_key));
+            bindPreferenceSummaryToValue(newsLimit);
 
-            Preference orderBy = findPreference(getString(R.string.settings_article_category_key));
-            bindPreferenceSummaryToValue(orderBy);
+            Preference orderByTopic = findPreference(getString(R.string.settings_order_by_topic_key));
+            bindPreferenceSummaryToValue(orderByTopic);
 
         }
 

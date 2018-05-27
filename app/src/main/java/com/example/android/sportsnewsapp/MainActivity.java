@@ -21,14 +21,16 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<SportNewsModel>> {
+import static com.example.android.sportsnewsapp.SportsNewsAdapter.*;
+
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<SportNewsModel>>, SharedPreferences.OnSharedPreferenceChangeListener {
 
     RecyclerView mRecyclerView;
     SportsNewsAdapter mSportsNewsAdapter;
     ArrayList<SportNewsModel> mNewsList;
     private TextView mEmptyStateTextView;
     private View mLoadingCircle;
-    private static final String REQUEST_URL = "http://content.guardianapis.com/search?show-tags=contributor&section=sport&q=cycling&api-key=f56abef9-94f7-4fad-b92f-c9a26b5f37c2";
+    private static final String REQUEST_URL = "http://content.guardianapis.com/search";
     private static final int LOADER_NEWS_ID = 1;
 
     @Override
@@ -44,6 +46,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mSportsNewsAdapter = new SportsNewsAdapter( this, mNewsList);
         mRecyclerView.setAdapter(mSportsNewsAdapter);
+
+        // set-up the shared preferences
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs.registerOnSharedPreferenceChangeListener(this);
 
         // set-up the connectivity manager
         // ConnectivityManager - check connection to internet
@@ -61,6 +67,26 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
     }
 
+    // OnSharedPreferencesLoader
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+        if (key.equals(getString(R.string.settings_news_limit_key)) ||
+                key.equals(getString(R.string.settings_order_by_topic_key))) {
+            // Clear the list for new query
+            mSportsNewsAdapter.clearAllData();
+
+            // Hide the empty state text view as the loading indicator will be displayed
+            mEmptyStateTextView.setVisibility(View.GONE);
+
+            // Show the loading bar while new data is being fetched
+            View loadingIndicator = findViewById(R.id.loadingCircle);
+            loadingIndicator.setVisibility(View.VISIBLE);
+
+            // Restart the loader to requery the news
+            getLoaderManager().restartLoader(LOADER_NEWS_ID, null, this);
+            }
+    }
+
     // onCreateLoader
     @Override
     // onCreateLoader instantiates and returns a new Loader for the given ID
@@ -68,15 +94,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
-        String minMagnitude = sharedPrefs.getString(
-                getString(R.string.settings_article_category_key),
-                getString(R.string.settings_article_category_default));
-
-        String orderBy = sharedPrefs.getString(
-                getString(R.string.settings_order_by_key),
-                getString(R.string.settings_order_by_default)
-        );
+        // getString retrieves a String value from the shared preferences. The second parameter is the default value for this preference.
+        String newsLimitNumber = sharedPrefs.getString(
+                getString(R.string.settings_news_limit_key),
+                getString(R.string.settings_news_limit_default));
+        String newsTopic = sharedPrefs.getString(
+                getString(R.string.settings_order_by_topic_key),
+                getString(R.string.settings_order_by_topic_default));
 
         // parse breaks apart the URI string that's passed into its parameter
         Uri baseUri = Uri.parse(REQUEST_URL);
@@ -85,10 +109,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         // Append query parameter and its value
-        uriBuilder.appendQueryParameter("section", "sports");
-        uriBuilder.appendQueryParameter("q", "cycling");
-        uriBuilder.appendQueryParameter("minmag", minMagnitude);
-        uriBuilder.appendQueryParameter("orderby", orderBy);
+        if (!newsTopic.equals("all"))
+            uriBuilder.appendQueryParameter(getString(R.string.settings_order_by_topic_key), newsTopic);
+        if (!newsLimitNumber.isEmpty())
+            uriBuilder.appendQueryParameter(getString(R.string.settings_news_limit_key), newsLimitNumber);
+
+        uriBuilder.appendQueryParameter(getString(R.string.show_tags_author_key), getString(R.string.show_tags_author_value));
+        uriBuilder.appendQueryParameter(getString(R.string.api_key), getString(R.string.api_key_value));
 
         return new SportNewsLoader(this, uriBuilder.toString());
     }
