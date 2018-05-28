@@ -21,8 +21,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.android.sportsnewsapp.SportsNewsAdapter.*;
-
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<SportNewsModel>>, SharedPreferences.OnSharedPreferenceChangeListener {
 
     RecyclerView mRecyclerView;
@@ -78,11 +76,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             // Hide the empty state text view as the loading indicator will be displayed
             mEmptyStateTextView.setVisibility(View.GONE);
 
-            // Show the loading bar while new data is being fetched
+            // Show the loading circle
             View loadingIndicator = findViewById(R.id.loadingCircle);
             loadingIndicator.setVisibility(View.VISIBLE);
 
-            // Restart the loader to requery the news
+            // Restart the loader to query the news
             getLoaderManager().restartLoader(LOADER_NEWS_ID, null, this);
             }
     }
